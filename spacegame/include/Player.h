@@ -14,6 +14,7 @@
 
 #include <Character.h>
 
+#define NUM_WEAPONS 5//Number of possible weapons to acquire & use (besides lasers)
 
 class Player : public Character
 {
@@ -28,6 +29,13 @@ class Player : public Character
         virtual ~Player();
 
     protected:
+        //the laser's ammo is based on energy levels; therefore it is not in the weapons[] array
+
+        int shield,energy;//shield and energy levels
+        int weapons[NUM_WEAPONS];//number/ammo of each weapon (where each weapons[x] corresponds to a different weapon)
+        double fuel;//amount of fuel left
+        bool hasMap;//has the player acquired a map? (default is false)
+
 
     private:
 };
