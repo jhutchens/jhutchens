@@ -370,3 +370,39 @@
 	<iostream>
 	"Character.h"
 
+1458443298 source:c:\users\lydia k. hutchens\documents\github\jhutchens\spacegame\shipgame.cpp
+	<SDL2/SDL.h>
+	<SDL2_image/SDL_image.h>
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<cmath>
+	<iostream>
+	"Character.h"
+
+1458500575 c:\users\lydia k. hutchens\documents\github\jhutchens\spacegame\include\character.h
+	<SDL2/SDL.h>
+	<SDL2_image/SDL_image.h>
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<cmath>
+
+1458499621 source:c:\users\lydia k. hutchens\documents\github\jhutchens\spacegame\src\character.cpp
+	"Character.h"
+
+1458505466 source:c:\users\lydia k. hutchens\documents\github\jhutchens\spacegame\src\player.cpp
+	"Player.h"
+
+1458505274 c:\users\lydia k. hutchens\documents\github\jhutchens\spacegame\include\player.h
+	<SDL2/SDL.h>
+	<SDL2_image/SDL_image.h>
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<cmath>
+	<Character.h>
+
