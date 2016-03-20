@@ -42,8 +42,10 @@
 			<Add directory="C:/codeblocks_dev_lib/lib" />
 		</Linker>
 		<Unit filename="include/Character.h" />
+		<Unit filename="include/Player.h" />
 		<Unit filename="shipgame.cpp" />
 		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/Player.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

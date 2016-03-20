@@ -42,11 +42,12 @@ class Character
         double direction;//facing which direction? (angle)
         float speed[2];//current x-speed (speed[0]) and y-speed (speed[1])
 		float omega=0;
-	
+
+		void destroy();//destroys the character
+        void friction();//resists forward movement and slows down character when not accelerating
 
     private:
-        void destroy();//destroys the character
-        void friction();//resists forward movement and slows down character when not accelerating
+
 };
 
 #endif // CHARACTER_H

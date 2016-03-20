@@ -19,6 +19,8 @@ and may not be redistributed without written permission.*/
 #define SCREEN_HEIGHT 480
 
 #include "Character.h"
+#include "Player.h"
+
 
 
 
@@ -183,8 +185,8 @@ int main( int argc, char* args[] )
 			}
 			SDL_FreeSurface(loadedSurface);
 
-			Character player1(*gRenderer,*sheep,100,100);
-			Character player2(*gRenderer,*sheep,100,100);
+			Player player1(*gRenderer,*sheep,100,100);
+			Player player2(*gRenderer,*sheep,100,100);
 
 
 			//While application is running
