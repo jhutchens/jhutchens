@@ -97,7 +97,7 @@ void Character::friction()
 		speed[0]+=.0125;//*SDL_abs(sped[0]/sumsped);
 	}
 	else speed[0]=0;
-	
+
 	if(speed[1]>= .0125){
 		speed[1]-= .0125;//*SDL_abs(sped[1]/sumsped);
 	}
@@ -105,7 +105,7 @@ void Character::friction()
 		speed[1]+=.0125;//*SDL_abs(sped[1]/sumsped);
 	}
 	else speed[1]=0;
-	
+
 	if(omega>.125)omega-=.125;
 	else if(omega<-.125)omega+=.125;
 
