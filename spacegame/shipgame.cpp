@@ -147,12 +147,12 @@ void close()
 	//Free loaded images
 	SDL_DestroyTexture( sheep );
 
-	//Destroy window
+	//Destroy window	
 	SDL_DestroyRenderer( gRenderer );
 	SDL_DestroyWindow( gWindow );
 	gWindow = NULL;
 	gRenderer = NULL;
-
+	
 	//Quit SDL subsystems
 	IMG_Quit();
 	SDL_Quit();
@@ -160,13 +160,16 @@ void close()
 
 int main( int argc, char* args[] )
 {
+
+	
 	//Start up SDL and create window
-	if(!init())
+	if( !init() )
 	{
-		printf("Failed to initialize!\n");
+		printf( "Failed to initialize!\n" );
 	}
 	else
 	{
+	
 			//Main loop flag
 			bool quit = false;
 
@@ -174,30 +177,30 @@ int main( int argc, char* args[] )
 			SDL_Event e;
 
 			//Flip type
-			SDL_Surface* loadedSurface = IMG_Load("res/arrow.png");
-
-			sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
-			if(sheep == NULL)
+			SDL_Surface* loadedSurface = IMG_Load("arrow.png");
+			
+			sheep = SDL_CreateTextureFromSurface( gRenderer, loadedSurface );
+			if( sheep == NULL )
 			{
-				printf("Unable to create texture! SDL Error: %s\n", SDL_GetError());
+				printf( "Unable to create texture! SDL Error: %s\n", SDL_GetError() );
 			}
-			SDL_FreeSurface(loadedSurface);
-
+			SDL_FreeSurface( loadedSurface );
+			
 			Character player1(*gRenderer,*sheep,100,100);
 			Character player2(*gRenderer,*sheep,100,100);
 
-
+			
 			//While application is running
-			while(!quit)
+			while( !quit )
 			{
 				SDL_PumpEvents();
 				Z_up.update();Z_left.update();Z_right.update();Z_space.update();
 				Z_w.update();Z_a.update();Z_d.update();Z_shift.update();
 				//Handle events on queue
-				while(SDL_PollEvent(&e) != 0)
+				while( SDL_PollEvent( &e ) != 0 )
 				{
 					//User requests quit
-					if(e.type == SDL_QUIT)
+					if( e.type == SDL_QUIT )
 					{
 						quit = true;
 					}
@@ -221,26 +224,25 @@ int main( int argc, char* args[] )
 				player1.updatePosition();
 				player2.updatePosition();
 					//Clear screen
-				SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
-				SDL_RenderClear(gRenderer);
+				SDL_SetRenderDrawColor( gRenderer, 0x22, 0x22, 0x44, 0xFF );
+				SDL_RenderClear( gRenderer );
 				SDL_Point center;
 				center.x=21;
 				center.y=20;
-
+				
 				//Render arrow
 				//gArrowTexture.render( shipx%SCREEN_WIDTH, shipy%SCREEN_HEIGHT, NULL, degrees, &center, flipType );
 				player1.render();
 				player2.render();
 				//Update screen
-				SDL_RenderPresent(gRenderer);
+				SDL_RenderPresent( gRenderer );
 				SDL_Delay(5);
-			}//end game loop
-
-	}//end init() code block
+			}
+		
+	}
 
 	//Free resources and close SDL
 	close();
 
-	return 0;//terminate
+	return 0;
 }
-
