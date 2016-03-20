@@ -71,6 +71,12 @@ void Character::steerRight()
     this->omega=  3;
 }
 
+void Character::process()
+{
+    //process actions & other items
+    this->updatePosition();
+}
+
 void Character::updatePosition()
 {
     this->friction();
@@ -83,7 +89,7 @@ void Character::updatePosition()
 void Character::render()
 {
 	//printf("To renderer %d, we send texture %d\n",renderer,texture);
-    printf("Rendering...umm, %d, %d [%d,%d] %f degrees\n",rect.x,rect.y,rect.w,rect.h,direction);
+    //printf("Rendering...umm, %d, %d [%d,%d] %f degrees\n",rect.x,rect.y,rect.w,rect.h,direction);
     SDL_RenderCopyEx(this->renderer,this->texture,NULL,&(this->rect),this->direction,NULL,SDL_FLIP_NONE);
 }
 

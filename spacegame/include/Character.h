@@ -31,6 +31,7 @@ class Character
         void steerLeft();//turn direction left
         void steerRight();//turn direction right
 
+        void process();//processes all forces and current actions, calls updatePosition()
         void updatePosition();//set x,y position based on current direction and speed, uses friction()
         void render();//draw character to screen
 
