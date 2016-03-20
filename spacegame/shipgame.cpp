@@ -48,7 +48,7 @@ struct Z_Key
 	{
 		pstate=state;
 		state=gkeystates[scanCode];
-		printf("%d, %d", scanCode, state);
+		//printf("%d, %d", scanCode, state);
 	}
 	bool newpress()
 	{
@@ -220,8 +220,13 @@ int main( int argc, char* args[] )
 				else if(Z_left.held())player1.steerLeft();
 				//if(Z_space.newpress()){do something here}
 
-				player1.updatePosition();
-				player2.updatePosition();
+				if(Z_space.held())player1.shoot();printf("Energy (P1): %d\t",player1.getEnergy());
+				if(Z_shift.held())player2.shoot();printf("Energy (P2): %d\n",player2.getEnergy());
+
+				player1.process();
+				//if(player1.getFuel()!=0)printf("Fuel (P1): %d\t",player1.getFuel());//display fuel
+				player2.process();
+				//if(player2.getFuel()!=0)printf("Fuel (P2): %d\n",player2.getFuel());//display fuel
 					//Clear screen
 				SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
 				SDL_RenderClear(gRenderer);
