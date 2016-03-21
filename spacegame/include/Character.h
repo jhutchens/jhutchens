@@ -21,7 +21,6 @@ class Character
 
         SDL_Texture *texture;
         SDL_Renderer *renderer;
-        SDL_Rect rect;
         //SDL_Point center;
 
         void kill();//decrease health to zero
@@ -40,7 +39,7 @@ class Character
 		bool isAlive;//is the character alive or dead?
 		int health;//character's current health
 		float px,py;//more precise x and y
-        int x,y;//x,y position
+		SDL_Rect rect;
         double direction;//facing which direction? (angle)
         float speed[2];//current x-speed (speed[0]) and y-speed (speed[1])
 		float omega=0;

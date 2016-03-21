@@ -8,12 +8,10 @@ Character::Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y)
     //constructor
     this->renderer=&renderer;
     this->texture=&texture;
-    this->x=x;
-    this->y=y;
 	px=x;
 	py=y;
-    this->rect.x=this->x;
-    this->rect.y=this->y;
+    this->rect.x=x;
+    this->rect.y=y;
     this->rect.w=30;
     this->rect.h=40;
     isAlive=true;
