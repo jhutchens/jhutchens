@@ -1,8 +1,6 @@
-/**
- * @authors: Zach DeCook, Jon Hutchens
- *
- *
- */
+/*This source code copyrighted by Lazy Foo' Productions (2004-2015)
+and may not be redistributed without written permission.*/
+
 //Using SDL, SDL_image, standard IO, math, and strings
 #ifdef __APPLE__
 #include <SDL2/SDL.h>
@@ -23,7 +21,14 @@
 #include "Character.h"
 #include "Player.h"
 
+
+
+
 using namespace std;
+
+//Screen dimension constants
+/*const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;*/
 
 const Uint8* gkeystates = SDL_GetKeyboardState(NULL);
 SDL_Texture* sheep = NULL;
@@ -83,11 +88,9 @@ SDL_Window* gWindow = NULL;
 //The window renderer
 SDL_Renderer* gRenderer = NULL;
 
+
 bool init()
 {
-	/*This source code copyrighted by Lazy Foo' Productions (2004-2015)
-	 and may not be redistributed without written permission.*/
-	
 	//Initialization flag
 	bool success = true;
 
@@ -106,7 +109,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow( "Shipgame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 		if( gWindow == NULL )
 		{
 			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -166,69 +169,79 @@ int main( int argc, char* args[] )
 	}
 	else
 	{
-		//Main loop flag
-		bool quit = false;
-		
-		//Event handler
-		SDL_Event e;
-		
-		//Flip type
-		SDL_Surface* loadedSurface = IMG_Load("res/arrow.png");
-		
-		sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
-		if(sheep == NULL)
-		{
-			printf("Unable to create texture! SDL Error: %s\n", SDL_GetError());
-			quit=true;
-		}
-		SDL_FreeSurface(loadedSurface);
-		Player player1(*gRenderer,*sheep,100,200);
-		Player player2(*gRenderer,*sheep,300,100);
-		
-		
-		//While application is running
-		while(!quit)
-		{
-			SDL_PumpEvents();
-			Z_up.update();Z_left.update();Z_right.update();Z_space.update();
-			Z_w.update();Z_a.update();Z_d.update();Z_shift.update();
-			//Handle events on queue
-			while(SDL_PollEvent(&e) != 0)
+			//Main loop flag
+			bool quit = false;
+
+			//Event handler
+			SDL_Event e;
+
+			//Flip type
+			SDL_Surface* loadedSurface = IMG_Load("res/arrow.png");
+
+			sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+			if(sheep == NULL)
 			{
-				//User requests quit
-				if(e.type == SDL_QUIT)
-				{
-					quit = true;
-				}
+				printf("Unable to create texture! SDL Error: %s\n", SDL_GetError());
 			}
-			
-			if(Z_up.held())player1.increaseSpeed();
-			if(Z_w.held())player2.increaseSpeed();
-			
-			if(Z_a.held())player2.steerLeft();
-			else if(Z_d.held())player2.steerRight();
-			
-			if(Z_right.held())player1.steerRight();
-			else if(Z_left.held())player1.steerLeft();
-			//if(Z_space.newpress()){do something here}
-			
-			if(Z_space.newpress())player1.shoot();printf("Energy (P1): %d\t",player1.getEnergy());
-			if(Z_shift.newpress())player2.shoot();printf("Energy (P2): %d\n",player2.getEnergy());
-			
-			player1.process();
-			//if(player1.getFuel()!=0)printf("Fuel (P1): %d\t",player1.getFuel());//display fuel
-			player2.process();
-			//if(player2.getFuel()!=0)printf("Fuel (P2): %d\n",player2.getFuel());//display fuel
-			//Clear screen
-			SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
-			SDL_RenderClear(gRenderer);
-			
-			player1.render();
-			player2.render();
-			//Update screen
-			SDL_RenderPresent(gRenderer);
-			SDL_Delay(5);
-		}//end game loop
+			SDL_FreeSurface(loadedSurface);
+
+			Player player1(*gRenderer,*sheep,100,100);
+			Player player2(*gRenderer,*sheep,100,100);
+
+
+			//While application is running
+			while(!quit)
+			{
+				SDL_PumpEvents();
+				Z_up.update();Z_left.update();Z_right.update();Z_space.update();
+				Z_w.update();Z_a.update();Z_d.update();Z_shift.update();
+				//Handle events on queue
+				while(SDL_PollEvent(&e) != 0)
+				{
+					//User requests quit
+					if(e.type == SDL_QUIT)
+					{
+						quit = true;
+					}
+				}
+
+				if(Z_up.held())
+				{
+					/*sped[0]+=.25*sin(degrees *(3.14/180));
+					sped[1]-=.25*cos(degrees *(3.14/180));//modify the speed vector
+					 */
+					player1.increaseSpeed();
+				}
+				if(Z_w.held())player2.increaseSpeed();
+				if(Z_a.held())player2.steerLeft();
+				else if(Z_d.held())player2.steerRight();
+
+				if(Z_right.held())player1.steerRight();
+				else if(Z_left.held())player1.steerLeft();
+				//if(Z_space.newpress()){do something here}
+
+				if(Z_space.held())player1.shoot();printf("Energy (P1): %d\t",player1.getEnergy());
+				if(Z_shift.held())player2.shoot();printf("Energy (P2): %d\n",player2.getEnergy());
+
+				player1.process();
+				//if(player1.getFuel()!=0)printf("Fuel (P1): %d\t",player1.getFuel());//display fuel
+				player2.process();
+				//if(player2.getFuel()!=0)printf("Fuel (P2): %d\n",player2.getFuel());//display fuel
+					//Clear screen
+				SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
+				SDL_RenderClear(gRenderer);
+				SDL_Point center;
+				center.x=21;
+				center.y=20;
+
+				//Render arrow
+				//gArrowTexture.render( shipx%SCREEN_WIDTH, shipy%SCREEN_HEIGHT, NULL, degrees, &center, flipType );
+				player1.render();
+				player2.render();
+				//Update screen
+				SDL_RenderPresent(gRenderer);
+				SDL_Delay(5);
+			}//end game loop
 
 	}//end init() code block
 

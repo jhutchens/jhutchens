@@ -10,8 +10,6 @@ Character::Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y)
     this->texture=&texture;
     this->x=x;
     this->y=y;
-	px=x;
-	py=y;
     this->rect.x=this->x;
     this->rect.y=this->y;
     this->rect.w=30;
@@ -82,10 +80,8 @@ void Character::process()
 void Character::updatePosition()
 {
     this->friction();
-    px+=this->speed[0];
-    py+=this->speed[1];
-	rect.x = px;
-	rect.y = py;
+    this->rect.x+=this->speed[0];
+    this->rect.y+=this->speed[1];
 
 	direction+= omega;
 }
@@ -118,7 +114,6 @@ void Character::friction()
 
 	if(omega>.125)omega-=.125;
 	else if(omega<-.125)omega+=.125;
-	else omega = 0;
 
 }
 
