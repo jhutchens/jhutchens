@@ -12,7 +12,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Character.h"
+#include <Character.h>
 
 #define NUM_WEAPONS 5//Number of possible weapons to acquire & use (besides lasers)
 
