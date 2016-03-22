@@ -87,7 +87,7 @@ bool init()
 {
 	/*This source code copyrighted by Lazy Foo' Productions (2004-2015)
 	 and may not be redistributed without written permission.*/
-	
+
 	//Initialization flag
 	bool success = true;
 
@@ -168,13 +168,13 @@ int main( int argc, char* args[] )
 	{
 		//Main loop flag
 		bool quit = false;
-		
+
 		//Event handler
 		SDL_Event e;
-		
+
 		//Flip type
 		SDL_Surface* loadedSurface = IMG_Load("res/arrow.png");
-		
+
 		sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
 		if(sheep == NULL)
 		{
@@ -184,8 +184,8 @@ int main( int argc, char* args[] )
 		SDL_FreeSurface(loadedSurface);
 		Player player1(*gRenderer,*sheep,100,200);
 		Player player2(*gRenderer,*sheep,300,100);
-		
-		
+
+
 		//While application is running
 		while(!quit)
 		{
@@ -201,20 +201,20 @@ int main( int argc, char* args[] )
 					quit = true;
 				}
 			}
-			
+
 			if(Z_up.held())player1.increaseSpeed();
 			if(Z_w.held())player2.increaseSpeed();
-			
+
 			if(Z_a.held())player2.steerLeft();
 			else if(Z_d.held())player2.steerRight();
-			
+
 			if(Z_right.held())player1.steerRight();
 			else if(Z_left.held())player1.steerLeft();
 			//if(Z_space.newpress()){do something here}
-			
+
 			if(Z_space.newpress())player1.shoot();printf("Energy (P1): %d\t",player1.getEnergy());
 			if(Z_shift.newpress())player2.shoot();printf("Energy (P2): %d\n",player2.getEnergy());
-			
+
 			player1.process();
 			//if(player1.getFuel()!=0)printf("Fuel (P1): %d\t",player1.getFuel());//display fuel
 			player2.process();
@@ -222,7 +222,7 @@ int main( int argc, char* args[] )
 			//Clear screen
 			SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
 			SDL_RenderClear(gRenderer);
-			
+
 			player1.render();
 			player2.render();
 			//Update screen
@@ -237,4 +237,3 @@ int main( int argc, char* args[] )
 
 	return 0;//terminate
 }
-
