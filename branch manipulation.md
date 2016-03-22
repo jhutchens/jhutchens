@@ -2,16 +2,16 @@
 
 ####Creating a remote branch:
 
-_git checkout -b branchName_
+git checkout -b branchName
 
 ... edit files, add and commit ...
 
-_git push -u branchName_
+git push -u branchName
 
 
 ####Deleting a remote branch:
 
-_git push origin --delete branchName_
+git push origin --delete branchName
 
 
 
@@ -19,8 +19,8 @@ _git push origin --delete branchName_
 
 1. Checkout the master branch: 
 
-   _git checkout master_
+   git checkout master
    
 2. Merge the branch into master: 
 
-   _git merge branchName_
+   git merge branchName
