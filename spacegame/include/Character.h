@@ -43,7 +43,7 @@ class Character
         int x,y;//x,y position
         double direction;//facing which direction? (angle)
         float speed[2];//current x-speed (speed[0]) and y-speed (speed[1])
-		float omega=0;
+		float omega=0;//angular speed
 
 		void destroy();//destroys the character
         void friction();//resists forward movement and slows down character when not accelerating
