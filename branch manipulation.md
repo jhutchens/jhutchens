@@ -17,5 +17,10 @@ git push origin --delete branchName
 
 ####Merging a branch into master
 
-1. Checkout the master branch:   git checkout master
-2. Merge the branch into master: git merge branchName
+1. Checkout the master branch: 
+
+   git checkout master
+   
+2. Merge the branch into master: 
+
+   git merge branchName
