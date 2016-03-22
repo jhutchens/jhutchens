@@ -46,8 +46,8 @@ git push origin --delete branchName
 5. **Important!**
 
 	If you are doing this for use with Git, **do not** create the link inside the GitHub folder on your computer.
-	Git will not understand it, and will be unable to add/commit such files/folders. Instead, link _to_ the GitHub 
-	folder _from_ your desired outside location.
+	Git will not understand it, and will be unable to add/commit such files/folders. Instead, **link _to_ the GitHub 
+	folder _from_ your desired outside location**.
 	
 	Examples: 
 
