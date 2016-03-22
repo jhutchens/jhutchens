@@ -54,4 +54,4 @@ git push origin --delete branchName
 	C:\...\NewLocationParentFolder> mklink /d newFolder "C:\...\GitHub\yourFolder"
 
 
-	C:\...\NewLocationParentFolder> mklink newFolder "C:\...\GitHub\yourFile"
+	C:\...\NewLocationParentFolder> mklink newFile "C:\...\GitHub\yourFile"
