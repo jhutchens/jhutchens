@@ -34,14 +34,14 @@ git push origin --delete branchName
 
 	_mklink newLinkFileName "addressOfSourceFile"_
 
-	Example: C:\...\NewLocationParentFolder> mklink new.txt "C:\...\source.txt"
+	Example: C:\\...\NewLocationParentFolder> mklink new.txt "C:\\...\source.txt"
 
 
 4. To link an entire folder...
 
 	_mklink /d newLinkFileName "addressOfSourceFile"_
 
-	Example: C:\...\NewLocationParentFolder> mklink /d newFolder "C:\...\sourceFolder"
+	Example: C:\\...\NewLocationParentFolder> mklink /d newFolder "C:\\...\sourceFolder"
 
 5. **Important!**
 
@@ -51,7 +51,7 @@ git push origin --delete branchName
 	
 	Examples: 
 
-	C:\...\NewLocationParentFolder> mklink /d newFolder "C:\...\GitHub\yourFolder"
+	C:\\...\NewLocationParentFolder> mklink /d newFolder "C:\\...\GitHub\yourFolder"
 
 
-	C:\...\NewLocationParentFolder> mklink newFile "C:\...\GitHub\yourFile"
+	C:\\...\NewLocationParentFolder> mklink newFile "C:\\...\GitHub\yourFile"
