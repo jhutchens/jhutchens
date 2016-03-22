@@ -49,4 +49,9 @@ git push origin --delete branchName
 	Git will not understand it, and will be unable to add/commit such files/folders. Instead, link _to_ the GitHub 
 	folder _from_ your desired outside location.
 	
-	Example: C:\...\NewLocationParentFolder> mklink /d newFolder "C:\...\GitHub\yourItem"
+	Examples: 
+
+	C:\...\NewLocationParentFolder> mklink /d newFolder "C:\...\GitHub\yourFolder"
+
+
+	C:\...\NewLocationParentFolder> mklink newFolder "C:\...\GitHub\yourFile"
