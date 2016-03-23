@@ -36,8 +36,8 @@ class GameApp
         //how many ships?
         int numPlayers;
 
-        Player player1;
-        Player player2;
+        Player* player1;
+        Player* player2;
 
 bool init();
 
@@ -55,6 +55,8 @@ bool init();
         //runs the game loop
         void run();
 
+        void playGame();
+
 
         //The window we'll be rendering to
         SDL_Window* gWindow = NULL;
@@ -63,6 +65,10 @@ bool init();
         SDL_Renderer* gRenderer = NULL;
 
         SDL_Texture* sheep = NULL;
+        SDL_Event e;//event handler
+
+        //Flip type
+        SDL_Surface* loadedSurface = IMG_Load("res/arrow.png");
 
         bool quit;
 

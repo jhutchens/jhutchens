@@ -11,8 +11,6 @@
 #define SCREEN_HEIGHT 480
 
 const Uint8* gkeystates = SDL_GetKeyboardState(NULL);
-
-
 struct Z_Key
 {
 	bool state;
@@ -57,11 +55,7 @@ Z_Key Z_shift(SDL_SCANCODE_LSHIFT);
 
 GameApp::GameApp(int numPlayers)
 {
-    if(!init())
-	{
-		printf("Failed to initialize!\n");
-	}
-	else{
+
     //ctor
 
     //The window we'll be rendering to
@@ -78,7 +72,7 @@ GameApp::GameApp(int numPlayers)
     //Player player2;
 
     quit=false;//main loop exit flag
-	}
+
 }
 
 GameApp::~GameApp()
@@ -147,8 +141,8 @@ bool GameApp::init()
 
 bool GameApp::createPlayers()
 {
-    player1(*gRenderer,*sheep,100,200);
-    player2(*gRenderer,*sheep,300,100);
+    player1 = new Player(*gRenderer,*sheep,100,200);
+    player2 = new Player(*gRenderer,*sheep,300,100);
     return true;//@todo return false if failed
 }
 
@@ -171,57 +165,23 @@ void GameApp::close()
 
 void GameApp::start()
 {
-    //get everything ready
-
-
-    //run the game
-
-
-    //on exit, close everything
-
-
-
     //Start up SDL and create window
-	//if(!init())
-	//{
-	//	printf("Failed to initialize!\n");
-	//}
-	//else
-	//{
-
-
-
-
-		//Flip type
-		SDL_Surface* loadedSurface = IMG_Load("res/arrow.png");
-
-		sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
-		if(sheep == NULL)
-		{
-			printf("Unable to create texture! SDL Error: %s\n", SDL_GetError());
-			quit=true;
-		}
-		SDL_FreeSurface(loadedSurface);
-
-		createPlayers();
-
-
-
+	if(!init())
+	{
+		printf("Failed to initialize!\n");
+	}
+	else
+	{
 		run();
 
-
-	//}//end else code block for main game functions
+	}//end else code block for main game functions
 
 	//Free resources and close SDL
 	close();
-
-	//return 0;//terminate
 }
 
-void GameApp::run()
+void GameApp::playGame()
 {
-    //Event handler
-		SDL_Event e;
     //While application is running
 		while(!quit)
 		{
@@ -238,31 +198,46 @@ void GameApp::run()
 				}
 			}
 
-			if(Z_up.held())player1.increaseSpeed();
-			if(Z_w.held())player2.increaseSpeed();
+			if(Z_up.held())player1->increaseSpeed();
+			if(Z_w.held())player2->increaseSpeed();
 
-			if(Z_a.held())player2.steerLeft();
-			else if(Z_d.held())player2.steerRight();
+			if(Z_a.held())player2->steerLeft();
+			else if(Z_d.held())player2->steerRight();
 
-			if(Z_right.held())player1.steerRight();
-			else if(Z_left.held())player1.steerLeft();
+			if(Z_right.held())player1->steerRight();
+			else if(Z_left.held())player1->steerLeft();
 			//if(Z_space.newpress()){do something here}
 
-			if(Z_space.newpress())player1.shoot();printf("Energy (P1): %d\t",player1.getEnergy());
-			if(Z_shift.newpress())player2.shoot();printf("Energy (P2): %d\n",player2.getEnergy());
+			if(Z_space.newpress())player1->shoot();printf("Energy (P1): %d\t",player1->getEnergy());
+			if(Z_shift.newpress())player2->shoot();printf("Energy (P2): %d\n",player2->getEnergy());
 
-			player1.process();
+			player1->process();
 			//if(player1.getFuel()!=0)printf("Fuel (P1): %d\t",player1.getFuel());//display fuel
-			player2.process();
+			player2->process();
 			//if(player2.getFuel()!=0)printf("Fuel (P2): %d\n",player2.getFuel());//display fuel
 			//Clear screen
 			SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
 			SDL_RenderClear(gRenderer);
 
-			player1.render();
-			player2.render();
+			player1->render();
+			player2->render();
 			//Update screen
 			SDL_RenderPresent(gRenderer);
 			SDL_Delay(5);
 		}//end game loop
+}
+
+void GameApp::run()
+{
+    sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+    if(sheep == NULL)
+    {
+        printf("Unable to create texture! SDL Error: %s\n", SDL_GetError());
+        quit=true;
+    }
+    SDL_FreeSurface(loadedSurface);
+    player1=new Player(*gRenderer,*sheep,100,200);
+    player2=new Player(*gRenderer,*sheep,300,100);
+
+    playGame();
 }
