@@ -230,10 +230,10 @@ int main( int argc, char* args[] )
 			SDL_Delay(5);
 		}//end game loop
 
-	}//end init() code block
+	}//end else code block for main game functions
 
 	//Free resources and close SDL
 	close();
 
 	return 0;//terminate
-}
+}//end main
