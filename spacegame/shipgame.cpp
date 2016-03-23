@@ -173,8 +173,8 @@ int main( int argc, char* args[] )
 			quit=true;
 		}
 		SDL_FreeSurface(loadedSurface);
-		Player player1(*gRenderer,*sheep,100,200);
-		Player player2(*gRenderer,*sheep,300,100);
+		Player player1(*gRenderer,*sheep,100,200,43,44);
+		Player player2(*gRenderer,*sheep,300,100,43,44);
 		
 		
 		//While application is running
