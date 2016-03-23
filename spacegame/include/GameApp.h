@@ -52,10 +52,10 @@ bool init();
         //Frees media and shuts down SDL
         void close();
 
-        //runs the game loop
+        //runs the game; calls playGame
         void run();
 
-        void playGame();
+        void playGame();//the main game loop
 
 
         //The window we'll be rendering to
