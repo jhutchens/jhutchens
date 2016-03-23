@@ -3,19 +3,17 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
-Character::Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y)
+Character::Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y, int w, int h)
 {
     //constructor
     this->renderer=&renderer;
     this->texture=&texture;
-    this->x=x;
-    this->y=y;
 	px=x;
 	py=y;
-    this->rect.x=this->x;
-    this->rect.y=this->y;
-    this->rect.w=30;
-    this->rect.h=40;
+    this->rect.x=x;
+    this->rect.y=y;
+    this->rect.w=w;
+    this->rect.h=h;
     isAlive=true;
     health=10;
 	omega=0;
