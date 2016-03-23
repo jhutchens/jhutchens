@@ -12,9 +12,9 @@ git branch -a
 3. Use _git checkout branchName_ where branchName is the remote name
 4. Example using a remote branch named 'cows':
 
-Input: _git branch -a_
+**Input**: _git branch -a_
 
-Output: 
+**Output**: 
 
 master
 
@@ -26,9 +26,9 @@ remotes/origin/cows
 
 remotes/origin/anotherRemoteBranch
 
-Input: _git checkout remoteBranch_
+**Input**: _git checkout remoteBranch_
 
-Output:
+**Output**:
 
 Branch cows set up to track remote branch cows from origin. 
 
