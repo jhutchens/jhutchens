@@ -201,9 +201,9 @@ int main( int argc, char* args[] )
 					quit = true;
 				}
 			}
-			
-			if(Z_up.held())player1.increaseSpeed();
-			if(Z_w.held())player2.increaseSpeed();
+
+			if(Z_up.held()){player1.increaseSpeed();printf("gas (p1): %d\t",player1.getFuel());}
+			if(Z_w.held()){player2.increaseSpeed();printf("gas (p2): %d\n",player2.getFuel());}
 			
 			if(Z_a.held())player2.steerLeft();
 			else if(Z_d.held())player2.steerRight();
@@ -212,8 +212,8 @@ int main( int argc, char* args[] )
 			else if(Z_left.held())player1.steerLeft();
 			//if(Z_space.newpress()){do something here}
 			
-			if(Z_space.newpress())player1.shoot();printf("Energy (P1): %d\t",player1.getEnergy());
-			if(Z_shift.newpress())player2.shoot();printf("Energy (P2): %d\n",player2.getEnergy());
+			if(Z_space.newpress()){player1.shoot();printf("Energy (P1): %d\n",player1.getEnergy());}
+			if(Z_shift.newpress()){player2.shoot();printf("Energy (P2): %d\n",player2.getEnergy());}
 			
 			player1.process();
 			//if(player1.getFuel()!=0)printf("Fuel (P1): %d\t",player1.getFuel());//display fuel

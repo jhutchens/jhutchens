@@ -4,7 +4,7 @@
 #define SCREEN_HEIGHT 480
 
 
-Player::Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y):Character(renderer,texture,x,y)
+Player::Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y, int w, int h):Character(renderer,texture,x,y,w,h)
 {
     //constructor
     shield=0;//starting shield level

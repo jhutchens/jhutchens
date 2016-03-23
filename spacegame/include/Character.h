@@ -15,7 +15,7 @@ class Character
 {
     public:
         /** Default constructor */
-        Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y);//takes a texture and initial coordinates
+        Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y, int w=30, int h=40);//takes a texture and initial coordinates
         /** Default destructor */
         virtual ~Character();
 
