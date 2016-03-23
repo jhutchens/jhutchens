@@ -1,5 +1,15 @@
 #Manipulating branches with git
 
+####To view **all** branches (including remotes):
+
+git branch -a
+
+
+####To create a branch which tracks a remote branch:
+
+
+
+
 ####Creating a remote branch:
 
 git checkout -b branchName
