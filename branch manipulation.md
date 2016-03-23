@@ -26,7 +26,7 @@ remotes/origin/cows
 
 remotes/origin/anotherRemoteBranch
 
-**Input**: _git checkout remoteBranch_
+**Input**: _git checkout cows_
 
 **Output**:
 
