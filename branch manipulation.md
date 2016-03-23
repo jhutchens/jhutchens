@@ -7,7 +7,32 @@ git branch -a
 
 ####To create a branch which tracks a remote branch:
 
+1. View all branches by the method above
+2. Find the one you want to create a tracking branch for
+3. Use _git checkout branchName_ where branchName is the remote name
+4. Example using a remote branch named 'cows':
 
+Input: _git branch -a_
+
+Output: 
+
+master
+
+localBranch1
+
+localBranch2
+
+remotes/origin/cows
+
+remotes/origin/anotherRemoteBranch
+
+Input: _git checkout remoteBranch_
+
+Output:
+
+Branch cows set up to track remote branch cows from origin. 
+
+Switched to a new branch 'cows'
 
 
 ####Creating a remote branch:
