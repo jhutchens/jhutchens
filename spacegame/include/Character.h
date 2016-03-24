@@ -40,6 +40,8 @@ class Character
 		int health;//character's current health
 		float px,py;//more precise x and y
 		SDL_Rect rect;
+		SDL_Rect clip;
+		int frame;
         double direction;//facing which direction? (angle)
         float speed[2];//current x-speed (speed[0]) and y-speed (speed[1])
 		float omega=0;
