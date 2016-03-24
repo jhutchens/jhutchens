@@ -105,7 +105,7 @@ void Character::render()
 	//printf("To renderer %d, we send texture %d\n",renderer,texture);
     //printf("Rendering...umm, %d, %d [%d,%d] %f degrees\n",rect.x,rect.y,rect.w,rect.h,direction);
 	clip.y = frame * clip.h;
-	SDL_RenderCopyEx(this->renderer,this->texture,&clip,&(this->rect),this->direction,NULL,SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, texture, &clip, &rect, direction, NULL, SDL_FLIP_NONE);
 }
 
 void Character::friction()
