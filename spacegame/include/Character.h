@@ -1,3 +1,9 @@
+/**
+ * @authors: Zach DeCook, Jon Hutchens
+ *
+ *
+ */
+
 #ifdef __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
@@ -44,7 +50,7 @@ class Character
 		int frame;
         double direction;//facing which direction? (angle)
         float speed[2];//current x-speed (speed[0]) and y-speed (speed[1])
-		float omega=0;
+		float omega=0;//angular speed
 
 		void destroy();//destroys the character
         void friction();//resists forward movement and slows down character when not accelerating

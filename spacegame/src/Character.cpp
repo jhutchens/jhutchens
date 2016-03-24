@@ -1,3 +1,9 @@
+/**
+ * @authors: Zach DeCook, Jon Hutchens
+ *
+ *
+ */
+
 #include "Character.h"
 
 #define SCREEN_WIDTH 640
