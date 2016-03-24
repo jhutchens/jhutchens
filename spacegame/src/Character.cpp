@@ -59,6 +59,9 @@ void Character::setHealth(int newHealth)
 
 void Character::increaseSpeed()
 {
+	//update animation
+	if(frame<2)frame = 4;
+	
     //modify the speed vector
     this->speed[0]+=.25*sin(this->direction *(3.14/180));
     this->speed[1]-=.25*cos(this->direction *(3.14/180));
@@ -95,13 +98,14 @@ void Character::render()
 {
 	//printf("To renderer %d, we send texture %d\n",renderer,texture);
     //printf("Rendering...umm, %d, %d [%d,%d] %f degrees\n",rect.x,rect.y,rect.w,rect.h,direction);
-	clip.x=frame*clip.h;
+	clip.y = frame * clip.h;
 	SDL_RenderCopyEx(this->renderer,this->texture,&clip,&(this->rect),this->direction,NULL,SDL_FLIP_NONE);
 }
 
 void Character::friction()
 {
     //slow down
+	if(frame>0)frame--;
 	if(speed[0]>=.0125){
 		speed[0]-= .0125;//*SDL_abs(sped[0]/sumsped);
 	}
