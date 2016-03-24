@@ -191,8 +191,8 @@ void GameApp::playGame()
 				}
 			}
 
-			if(Z_up.held())player1->increaseSpeed();
-			if(Z_w.held())player2->increaseSpeed();
+			if(Z_up.held()){player1->increaseSpeed();printf("Fuel (P1): %d\t",player1->getFuel());}
+			if(Z_w.held()){player2->increaseSpeed();printf("Fuel (P2): %d\n",player2->getFuel());}
 
 			if(Z_a.held())player2->steerLeft();
 			else if(Z_d.held())player2->steerRight();
@@ -201,13 +201,11 @@ void GameApp::playGame()
 			else if(Z_left.held())player1->steerLeft();
 			//if(Z_space.newpress()){do something here}
 
-			if(Z_space.newpress())player1->shoot();printf("Energy (P1): %d\t",player1->getEnergy());
-			if(Z_shift.newpress())player2->shoot();printf("Energy (P2): %d\n",player2->getEnergy());
+			if(Z_space.newpress()){player1->shoot();printf("Energy (P1): %d\t",player1->getEnergy());}
+			if(Z_shift.newpress()){player2->shoot();printf("Energy (P2): %d\n",player2->getEnergy());}
 
 			player1->process();
-			//if(player1.getFuel()!=0)printf("Fuel (P1): %d\t",player1.getFuel());//display fuel
 			player2->process();
-			//if(player2.getFuel()!=0)printf("Fuel (P2): %d\n",player2.getFuel());//display fuel
 			//Clear screen
 			SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
 			SDL_RenderClear(gRenderer);
