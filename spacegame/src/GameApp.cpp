@@ -134,6 +134,7 @@ bool GameApp::createPlayers()
 {
     player1 = new Player(*gRenderer,*sheep,100,200,43,44);
     player2 = new Player(*gRenderer,*sheep,300,100,43,44);
+	missile = new Player(*gRenderer,*rocket,400,400,16,32);
     return true;//@todo return false if failed
 }
 
@@ -141,8 +142,10 @@ void GameApp::close()
 {
 	delete player1;
 	delete player2;
+	delete missile;
 	//Free loaded images
 	SDL_DestroyTexture( sheep );
+	SDL_DestroyTexture( rocket );
 
 	//Destroy window
 	SDL_DestroyRenderer( gRenderer );
@@ -212,6 +215,7 @@ void GameApp::playGame()
 
 			player1->render();
 			player2->render();
+			missile->render();
 			//Update screen
 			SDL_RenderPresent(gRenderer);
 			SDL_Delay(5);
@@ -220,6 +224,7 @@ void GameApp::playGame()
 
 void GameApp::run()
 {
+	loadedSurface = IMG_Load("res/arrow.png");
     sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
     if(sheep == NULL)
     {
@@ -227,6 +232,16 @@ void GameApp::run()
         quit=true;
     }
     SDL_FreeSurface(loadedSurface);
+	
+	loadedSurface = IMG_Load("res/rightm.png");
+	rocket = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+	if(sheep == NULL)
+	{
+		printf("Unable to create texture! SDL Error: %s\n", SDL_GetError());
+		quit=true;
+	}
+	SDL_FreeSurface(loadedSurface);
+	
 	createPlayers();
 
     playGame();
