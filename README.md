@@ -1,5 +1,5 @@
 # jhutchens
-master repository
+master repository for shipgame 
 
 
 ##**IMPORTANT!**
