@@ -73,6 +73,8 @@ GameApp::GameApp(int numPlayers)
 
     quit=false;//main loop exit flag
 
+    printf("Finished initializing GameApp object...\n");
+
 }
 
 GameApp::~GameApp()
@@ -86,20 +88,21 @@ bool GameApp::init()
 {
 	/*This source code copyrighted by Lazy Foo' Productions (2004-2015)
 	 and may not be redistributed without written permission.*/
-	
+
+	 printf("Inside init() function...\n");
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
 		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
 		return false;
 	}
-	
+
 	//Set texture filtering to linear
 	if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
 	{
 		printf( "Warning: Linear texture filtering not enabled!" );
 	}
-	
+
 	//Create window
 	gWindow = SDL_CreateWindow( "Shipgame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 	if( gWindow == NULL )
@@ -107,7 +110,7 @@ bool GameApp::init()
 		printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
 		return false;
 	}
-	
+
 	//Create vsynced renderer for window
 	gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
 	if( gRenderer == NULL )
@@ -115,10 +118,10 @@ bool GameApp::init()
 		printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
 		return false;
 	}
-	
+
 	//Initialize renderer color
 	SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-	
+
 	//Initialize PNG loading
 	int imgFlags = IMG_INIT_PNG;
 	if( !( IMG_Init( imgFlags ) & imgFlags ) )
@@ -126,23 +129,29 @@ bool GameApp::init()
 		printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
 		return false;
 	}
-	
+
+	printf("Leaving init() function (success)...\n");
 	return true;
 }
 
 bool GameApp::createPlayers()
 {
+    printf("Inside createPlayers() function...\n");
+    printf("Creating P1...\n");
     player1 = new Player(*gRenderer,*sheep,100,200,43,44);
-    player2 = new Player(*gRenderer,*sheep,300,100,43,44);
-	missile = new Player(*gRenderer,*rocket,400,400,16,32);
+    //printf("Creating P2...\n");
+    //player2 = new Player(*gRenderer,*sheep,300,100,43,44);
+    //printf("Creating missile...\n");
+	//missile = new Player(*gRenderer,*rocket,400,400,16,32);
+	printf("Leaving createPlayers() function (success)...\n");
     return true;//@todo return false if failed
 }
 
 void GameApp::close()
 {
 	delete player1;
-	delete player2;
-	delete missile;
+	//delete player2;
+	//delete missile;
 	//Free loaded images
 	SDL_DestroyTexture( sheep );
 	SDL_DestroyTexture( rocket );
@@ -161,6 +170,7 @@ void GameApp::close()
 
 void GameApp::start()
 {
+    printf("Attempting to initialize game...\n");
     //Start up SDL and create window
 	if(!init())
 	{
@@ -168,10 +178,13 @@ void GameApp::start()
 	}
 	else
 	{
+	    printf("Attempting to run game...\n");
 		run();
 
 	}//end else code block for main game functions
 
+
+	printf("Attempting to close game...\n");
 	//Free resources and close SDL
 	close();
 }
@@ -182,7 +195,7 @@ void GameApp::playGame()
 		while(!quit)
 		{
 			//SDL_PumpEvents();
-			
+
 			//Handle events on queue
 			while(SDL_PollEvent(&e) != 0)//PollEvent implicitly calls PumpEvents
 			{
@@ -196,27 +209,27 @@ void GameApp::playGame()
 			Z_w.update();Z_a.update();Z_d.update();Z_shift.update();
 
 			if(Z_up.held()){player1->increaseSpeed();printf("Fuel (P1): %d\t",player1->getFuel());}
-			if(Z_w.held()){player2->increaseSpeed();printf("Fuel (P2): %d\n",player2->getFuel());}
+			//if(Z_w.held()){player2->increaseSpeed();printf("Fuel (P2): %d\n",player2->getFuel());}
 
-			if(Z_a.held())player2->steerLeft();
-			else if(Z_d.held())player2->steerRight();
+			//if(Z_a.held())player2->steerLeft();
+			//else if(Z_d.held())player2->steerRight();
 
 			if(Z_right.held())player1->steerRight();
 			else if(Z_left.held())player1->steerLeft();
 			//if(Z_space.newpress()){do something here}
 
 			if(Z_space.newpress()){player1->shoot();printf("Energy (P1): %d\t",player1->getEnergy());}
-			if(Z_shift.newpress()){player2->shoot();printf("Energy (P2): %d\n",player2->getEnergy());}
+			//if(Z_shift.newpress()){player2->shoot();printf("Energy (P2): %d\n",player2->getEnergy());}
 
 			player1->process();
-			player2->process();
+			//player2->process();
 			//Clear screen
 			SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
 			SDL_RenderClear(gRenderer);
 
 			player1->render();
-			player2->render();
-			missile->render();
+			//player2->render();
+			//missile->render();
 			//Update screen
 			SDL_RenderPresent(gRenderer);
 			SDL_Delay(5);
@@ -225,6 +238,7 @@ void GameApp::playGame()
 
 void GameApp::run()
 {
+    printf("Inside run() function...\n");
 	loadedSurface = IMG_Load("res/arrow.png");
     sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
     if(sheep == NULL)
@@ -233,7 +247,7 @@ void GameApp::run()
         quit=true;
     }
     SDL_FreeSurface(loadedSurface);
-	
+
 	loadedSurface = IMG_Load("res/rightm.png");
 	rocket = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
 	if(sheep == NULL)
@@ -242,8 +256,10 @@ void GameApp::run()
 		quit=true;
 	}
 	SDL_FreeSurface(loadedSurface);
-	
+
+	printf("Calling createPlayers() function...\n");
 	createPlayers();
 
+	printf("Calling playGame() function...\n");
     playGame();
 }
