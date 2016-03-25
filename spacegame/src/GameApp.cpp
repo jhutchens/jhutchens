@@ -181,11 +181,10 @@ void GameApp::playGame()
     //While application is running
 		while(!quit)
 		{
-			SDL_PumpEvents();
-			Z_up.update();Z_left.update();Z_right.update();Z_space.update();
-			Z_w.update();Z_a.update();Z_d.update();Z_shift.update();
+			//SDL_PumpEvents();
+			
 			//Handle events on queue
-			while(SDL_PollEvent(&e) != 0)
+			while(SDL_PollEvent(&e) != 0)//PollEvent implicitly calls PumpEvents
 			{
 				//User requests quit
 				if(e.type == SDL_QUIT)
@@ -193,6 +192,8 @@ void GameApp::playGame()
 					quit = true;
 				}
 			}
+			Z_up.update();Z_left.update();Z_right.update();Z_space.update();
+			Z_w.update();Z_a.update();Z_d.update();Z_shift.update();
 
 			if(Z_up.held()){player1->increaseSpeed();printf("Fuel (P1): %d\t",player1->getFuel());}
 			if(Z_w.held()){player2->increaseSpeed();printf("Fuel (P2): %d\n",player2->getFuel());}

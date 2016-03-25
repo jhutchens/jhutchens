@@ -111,6 +111,14 @@ void Character::render()
 void Character::friction()
 {
     //slow down
+	//Instead of treating friction as if it were run every frame,
+	//some code will do some friction based on how far you are moving.
+	//The friction is the force caused by every square inch of 'space'
+	//that you move through.
+	double magnitude = sqrt(speed[0]*speed[0] + speed[1]*speed[1]);//take the magnitude
+	//and decrease each by its portion of that.
+	//speed[0]-=magnitude/speed[1];
+	//speed[1]-=magnitude/speed[0];
 	if(frame>0)frame--;
 	if(speed[0]>=.0125){
 		speed[0]-= .0125;//*SDL_abs(sped[0]/sumsped);
