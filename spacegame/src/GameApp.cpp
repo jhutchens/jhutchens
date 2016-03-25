@@ -84,63 +84,70 @@ GameApp::~GameApp()
 
 bool GameApp::init()
 {
-	/*This source code copyrighted by Lazy Foo' Productions (2004-2015)
-	 and may not be redistributed without written permission.*/
-	
+
+	//Initialization flag
+	bool success = true;
+
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
 		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
-		return false;
+		success = false;
 	}
-	
-	//Set texture filtering to linear
-	if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
+	else
 	{
-		printf( "Warning: Linear texture filtering not enabled!" );
+		//Set texture filtering to linear
+		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
+		{
+			printf( "Warning: Linear texture filtering not enabled!" );
+		}
+
+		//Create window
+		gWindow = SDL_CreateWindow( "Shipgame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		if( gWindow == NULL )
+		{
+			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+			success = false;
+		}
+		else
+		{
+			//Create vsynced renderer for window
+			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+			if( gRenderer == NULL )
+			{
+				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+				success = false;
+			}
+			else
+			{
+				//Initialize renderer color
+				SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+
+				//Initialize PNG loading
+				int imgFlags = IMG_INIT_PNG;
+				if( !( IMG_Init( imgFlags ) & imgFlags ) )
+				{
+					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+					success = false;
+				}
+			}
+		}
 	}
-	
-	//Create window
-	gWindow = SDL_CreateWindow( "Shipgame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-	if( gWindow == NULL )
-	{
-		printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
-		return false;
-	}
-	
-	//Create vsynced renderer for window
-	gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
-	if( gRenderer == NULL )
-	{
-		printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
-		return false;
-	}
-	
-	//Initialize renderer color
-	SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-	
-	//Initialize PNG loading
-	int imgFlags = IMG_INIT_PNG;
-	if( !( IMG_Init( imgFlags ) & imgFlags ) )
-	{
-		printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
-		return false;
-	}
-	
-	return true;
+
+
+
+	return success;
 }
 
 bool GameApp::createPlayers()
 {
-    player1 = new Player(*gRenderer,*sheep,100,200,43,44);
-    player2 = new Player(*gRenderer,*sheep,300,100,43,44);
+    player1 = new Player(*gRenderer,*sheep,100,200);
+    player2 = new Player(*gRenderer,*sheep,300,100);
     return true;//@todo return false if failed
 }
 
 void GameApp::close()
 {
-	delete player1;
-	delete player2;
 	//Free loaded images
 	SDL_DestroyTexture( sheep );
 
@@ -229,7 +236,8 @@ void GameApp::run()
         quit=true;
     }
     SDL_FreeSurface(loadedSurface);
-	createPlayers();
+    player1=new Player(*gRenderer,*sheep,100,200);
+    player2=new Player(*gRenderer,*sheep,300,100);
 
     playGame();
 }

@@ -28,7 +28,7 @@ class Player : public Character
         /** Default constructor */
 
         //takes a renderer, texture and initial coordinates
-        Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y, int=30, int=40);
+        Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y);
 
 
         /** Default destructor */
