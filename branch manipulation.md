@@ -61,7 +61,7 @@ git push origin --delete branchName
    git merge branchName
 
 
-###Creating hardlinks in Windows###
+### Creating hardlinks in Windows ###
 
 1. Run cmd as administrator 
 2. Change directory to the location for the new link
