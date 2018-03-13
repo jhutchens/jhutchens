@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project ***********MODIFY THIS TO REFLECT INPUT .CPP NAME
-OBJS = spacegame\shipgame.cpp
+OBJS = spacegame\shipgame.cpp spacegame\src\Character.cpp spacegame\src\GameApp.cpp spacegame\src\Object.cpp spacegame\src\Player.cpp
 
 #CC specifies which compiler we're using
 CC = g++

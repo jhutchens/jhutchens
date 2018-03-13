@@ -29,6 +29,6 @@ using namespace std;
 int main( int argc, char* args[] )
 {
 	GameApp shipgame(2);
-	//shipgame.start();
+	shipgame.start();
 	return 0;//terminate
 }//end main
