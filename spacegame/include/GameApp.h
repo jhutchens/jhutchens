@@ -23,29 +23,25 @@ class GameApp
 {
     public:
         /** Default constructor */
-        GameApp(int numPlayers);
+        GameApp();
         /** Default destructor */
         virtual ~GameApp();
-
-
-
 
         //starts the game; calls the init, run, & close functions
         void start();
 
+        void displayStocks();
+
         //how many ships?
-        int numPlayers;
+        //int numPlayers;
 
         Player* player1;
         Player* player2;
 
-bool init();
+        bool init();
 
     protected:
-
         //Starts up SDL and creates window; calls createPlayers
-
-
         //initializes player creation
         bool createPlayers();
 
@@ -69,7 +65,6 @@ bool init();
 
         //Flip type
         SDL_Surface* loadedSurface = NULL;
-        
 
         bool quit;
 

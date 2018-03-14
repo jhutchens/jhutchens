@@ -53,7 +53,7 @@ Z_Key Z_shift(SDL_SCANCODE_LSHIFT);
 
 
 
-GameApp::GameApp(int numPlayers)
+GameApp::GameApp()
 {
 
     //ctor
@@ -66,7 +66,7 @@ GameApp::GameApp(int numPlayers)
 
     //sheep = NULL;
 
-    this->numPlayers=numPlayers;
+    //this->numPlayers=numPlayers;
 
     //Player player1;
     //Player player2;
@@ -183,6 +183,14 @@ void GameApp::start()
 	close();
 }
 
+void GameApp::displayStocks()
+{
+	printf("Energy(P1):%d ",player1->getEnergy());
+	printf("Fuel(P1):%d\t",player1->getFuel());
+	printf("Energy(P2):%d ",player2->getEnergy());
+	printf("Fuel(P2):%d\n",player2->getFuel());
+}
+
 void GameApp::playGame()
 {
     //While application is running
@@ -211,14 +219,17 @@ void GameApp::playGame()
 			else if(Z_left.held())player1->steerLeft();
 			//if(Z_space.newpress()){do something here}
 
-			if(Z_space.newpress())player1->shoot();printf("Energy (P1): %d\t",player1->getEnergy());
-			if(Z_shift.newpress())player2->shoot();printf("Energy (P2): %d\n",player2->getEnergy());
+			if(Z_space.newpress())player1->shoot();
+			if(Z_shift.newpress())player2->shoot();
 
 			player1->process();
 			//if(player1.getFuel()!=0)printf("Fuel (P1): %d\t",player1.getFuel());//display fuel
 			player2->process();
 			//if(player2.getFuel()!=0)printf("Fuel (P2): %d\n",player2.getFuel());//display fuel
 			//Clear screen
+
+			displayStocks();
+
 			SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
 			SDL_RenderClear(gRenderer);
 
