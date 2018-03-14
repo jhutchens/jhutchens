@@ -165,6 +165,9 @@ void GameApp::close()
 
 void GameApp::start()
 {
+	//printf("Attempting to start game.\nInitializing...");
+	//cout << "Attempting to start game.\nInitializing...";
+	//system("PAUSE");
     //Start up SDL and create window
 	if(!init())
 	{
@@ -229,9 +232,16 @@ void GameApp::playGame()
 
 void GameApp::run()
 {
+	loadedSurface = IMG_Load("res/arrow.png");
+	if(!loadedSurface) {
+    	printf("no image...IMG_Load: %s\n", IMG_GetError());
+    	// handle error
+	}
     sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+	
     if(sheep == NULL)
     {
+		printf("sheep is null\n");
         printf("Unable to create texture! SDL Error: %s\n", SDL_GetError());
         quit=true;
     }

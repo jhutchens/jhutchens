@@ -68,7 +68,8 @@ bool init();
         SDL_Event e;//event handler
 
         //Flip type
-        SDL_Surface* loadedSurface = IMG_Load("res/arrow.png");
+        SDL_Surface* loadedSurface = NULL;
+        
 
         bool quit;
 
