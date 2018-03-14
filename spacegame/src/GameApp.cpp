@@ -148,6 +148,8 @@ bool GameApp::createPlayers()
 
 void GameApp::close()
 {
+	delete player1;
+ 	delete player2;
 	//Free loaded images
 	SDL_DestroyTexture( sheep );
 
