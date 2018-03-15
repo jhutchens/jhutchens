@@ -73,7 +73,6 @@ GameApp::GameApp()
 
     quit=false;//main loop exit flag
 
-    printf("Finished initializing GameApp object...\n");
 
 }
 
@@ -219,10 +218,10 @@ void GameApp::playGame()
 			Z_w.update();Z_a.update();Z_d.update();Z_shift.update();
 
 			if(Z_up.held()){player1->increaseSpeed();}
-			//if(Z_w.held()){player2->increaseSpeed();printf("Fuel (P2): %d\n",player2->getFuel());}
+			if(Z_w.held()){player2->increaseSpeed();}
 
-			//if(Z_a.held())player2->steerLeft();
-			//else if(Z_d.held())player2->steerRight();
+			if(Z_a.held())player2->steerLeft();
+			else if(Z_d.held())player2->steerRight();
 
 			if(Z_right.held())player1->steerRight();
 			else if(Z_left.held())player1->steerLeft();
@@ -232,7 +231,7 @@ void GameApp::playGame()
 			if(Z_shift.newpress())player2->shoot();
 
 			player1->process();
-			//player2->process();
+			player2->process();
 			//Clear screen
 
 			displayStocks();
@@ -241,7 +240,7 @@ void GameApp::playGame()
 			SDL_RenderClear(gRenderer);
 
 			player1->render();
-			//player2->render();
+			player2->render();
 			//missile->render();
 			//Update screen
 			SDL_RenderPresent(gRenderer);
@@ -260,17 +259,16 @@ void GameApp::run()
 	
     if(sheep == NULL)
     {
-		printf("sheep is null\n");
-        printf("Unable to create texture! SDL Error: %s\n", SDL_GetError());
+        printf("Unable to create ship texture! SDL Error: %s\n", SDL_GetError());
         quit=true;
     }
     SDL_FreeSurface(loadedSurface);
 	
 	loadedSurface = IMG_Load("res/rightm.png");
 	rocket = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
-	if(sheep == NULL)
+	if(rocket == NULL)
 	{
-		printf("Unable to create texture! SDL Error: %s\n", SDL_GetError());
+		printf("Unable to create rocket texture! SDL Error: %s\n", SDL_GetError());
 		quit=true;
 	}
 	SDL_FreeSurface(loadedSurface);
