@@ -105,7 +105,6 @@ void Character::render()
 	//SDL_RenderCopyEx(renderer, texture, &clip, &rect, direction, NULL, SDL_FLIP_NONE);
 //======= CONFLICT 
     SDL_RenderCopyEx(this->renderer,this->texture,NULL,&(this->rect),this->direction,NULL,SDL_FLIP_NONE);
-    //SDL_RenderCopyEx(renderer, texture, &clip, &rect, direction, NULL, SDL_FLIP_NONE);
 //>>>>>>> master CONFLICT
 }
 
