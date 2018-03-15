@@ -37,6 +37,7 @@ class GameApp
 
         Player* player1;
         Player* player2;
+	Player* missile;
 
         bool init();
 
@@ -61,9 +62,9 @@ class GameApp
         SDL_Renderer* gRenderer = NULL;
 
         SDL_Texture* sheep = NULL;
+		SDL_Texture* rocket = NULL;
         SDL_Event e;//event handler
 
-        //Flip type
         SDL_Surface* loadedSurface = NULL;
 
         bool quit;
