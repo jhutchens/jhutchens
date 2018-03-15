@@ -2,6 +2,4 @@
 master repository for shipgame 
 
 
-##**IMPORTANT!**
-
-Always switch to the proper branch in Shell _before_ starting to code!
+Well hi, there. It's been a while hasn't it? You will find that the repository has undergone some major spring cleaning.
