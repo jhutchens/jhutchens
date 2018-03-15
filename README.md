@@ -2,6 +2,6 @@
 master repository for shipgame 
 
 
-##**IMPORTANT!**
+Why hello there. It's been a while hasn't it? You will find that the repository has undergone some major spring cleaning.
 
-Always switch to the proper branch in Shell _before_ starting to code!
+All branches have been merged into master and closed for a fresh start. Experimental code has been implemented or commented out for further review.
