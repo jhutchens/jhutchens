@@ -28,9 +28,7 @@ using namespace std;
 
 int main( int argc, char* args[] )
 {
-    printf("Creating GameApp object...\n");
-	GameApp shipgame(2);
-	printf("Starting game...\n");
+	GameApp shipgame;
 	shipgame.start();
 	return 0;//terminate
 }//end main

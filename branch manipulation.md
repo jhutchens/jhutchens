@@ -1,11 +1,11 @@
 #Manipulating branches with git
 
-####To view **all** branches (including remotes):
+#### To view **all** branches (including remotes):
 
 git branch -a
 
 
-####To create a branch which tracks a remote branch:
+#### To create a branch which tracks a remote branch:
 
 1. View all branches by the method above
 2. Find the one you want to create a tracking branch for
@@ -35,7 +35,7 @@ Branch cows set up to track remote branch cows from origin.
 Switched to a new branch 'cows'
 
 
-####Creating a remote branch:
+#### Creating a remote branch:
 
 git checkout -b branchName
 
@@ -44,13 +44,13 @@ git checkout -b branchName
 git push -u branchName
 
 
-####Deleting a remote branch:
+#### Deleting a remote branch:
 
 git push origin --delete branchName
 
 
 
-####Merging a branch into master
+#### Merging a branch into master
 
 1. Checkout the master branch: 
 
@@ -61,7 +61,7 @@ git push origin --delete branchName
    git merge branchName
 
 
-####Creating hardlinks in Windows
+### Creating hardlinks in Windows ###
 
 1. Run cmd as administrator 
 2. Change directory to the location for the new link

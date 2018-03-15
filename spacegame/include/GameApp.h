@@ -23,40 +23,36 @@ class GameApp
 {
     public:
         /** Default constructor */
-        GameApp(int numPlayers);
+        GameApp();
         /** Default destructor */
         virtual ~GameApp();
-
-
-
 
         //starts the game; calls the init, run, & close functions
         void start();
 
+        void displayStocks();
+
         //how many ships?
-        int numPlayers;
+        //int numPlayers;
 
         Player* player1;
         Player* player2;
 	Player* missile;
 
-bool init();
+        bool init();
 
     protected:
-
         //Starts up SDL and creates window; calls createPlayers
-
-
         //initializes player creation
         bool createPlayers();
 
         //Frees media and shuts down SDL
         void close();
 
-        //runs the game; calls playGame
+        //runs the game loop
         void run();
 
-        void playGame();//the main game loop
+        void playGame();
 
 
         //The window we'll be rendering to
