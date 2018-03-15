@@ -37,7 +37,7 @@ class GameApp
 
         Player* player1;
         Player* player2;
-	Player* missile;
+	    Player* missile;
 
         bool init();
 
@@ -61,11 +61,11 @@ class GameApp
         //The window renderer
         SDL_Renderer* gRenderer = NULL;
 
-        SDL_Texture* sheep = NULL;
-		SDL_Texture* rocket = NULL;
+        //SDL_Texture* sheep = NULL;
+		//SDL_Texture* rocket = NULL;
         SDL_Event e;//event handler
 
-        SDL_Surface* loadedSurface = NULL;
+        //SDL_Surface* loadedSurface = NULL;
 
         bool quit;
 

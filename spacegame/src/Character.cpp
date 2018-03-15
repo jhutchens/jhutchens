@@ -9,19 +9,29 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
-Character::Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y)
+//Character::Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y)
+Character::Character(SDL_Renderer &renderer,int x,int y, int w, int h)
 {
     //constructor
     this->renderer=&renderer;
-    this->texture=&texture;
-    this->x=x;
-    this->y=y;
-	px=x;
-	py=y;
-    this->rect.x=this->x;
-    this->rect.y=this->y;
-    this->rect.w=30;
-    this->rect.h=40;
+    this->texture=NULL;
+    px=x;
+ 	py=y;
+    //this->rect.x=this->x;
+    //this->rect.y=this->y;
+    //this->rect.w=30;
+    //this->rect.h=40;
+
+    //experimental changes
+    rect.x = x;
+    rect.y = y;
+    clip.w = rect.w = w;
+    clip.h = rect.h = h;
+	clip.x = 0;
+	clip.y = 0;
+	frame = 0;
+    //experimental changes
+
     isAlive=true;
     health=10;
 	omega=0;
@@ -64,6 +74,8 @@ void Character::setHealth(int newHealth)
 
 void Character::increaseSpeed()
 {
+    //update animation
+    if(frame<2)frame = 4;
     //modify the speed vector
     this->speed[0]+=.25*sin(this->direction *(3.14/180));
     this->speed[1]-=.25*cos(this->direction *(3.14/180));
@@ -102,9 +114,11 @@ void Character::render()
     //printf("Rendering...umm, %d, %d [%d,%d] %f degrees\n",rect.x,rect.y,rect.w,rect.h,direction);
 //<<<<<<< zach CONFLICT
 	//clip.y = frame * clip.h;
-	//SDL_RenderCopyEx(renderer, texture, &clip, &rect, direction, NULL, SDL_FLIP_NONE);
+    clip.y=frame*clip.h;
+	SDL_RenderCopyEx(this->renderer,this->texture,&clip,&(this->rect),this->direction,NULL,SDL_FLIP_NONE);
+    //SDL_RenderCopyEx(renderer, texture, &clip, &rect, direction, NULL, SDL_FLIP_NONE);
 //======= CONFLICT 
-    SDL_RenderCopyEx(this->renderer,this->texture,NULL,&(this->rect),this->direction,NULL,SDL_FLIP_NONE);
+    //SDL_RenderCopyEx(this->renderer,this->texture,NULL,&(this->rect),this->direction,NULL,SDL_FLIP_NONE);
 //>>>>>>> master CONFLICT
 }
 
@@ -120,7 +134,7 @@ void Character::friction()
 	//and decrease each by its portion of that.
 	//speed[0]-=magnitude/speed[1];
 	//speed[1]-=magnitude/speed[0];
-//if(frame>0)frame--;
+    if(frame>0)frame--;
 //======= CONFLICT
 //>>>>>>> master CONFLICT
 	if(speed[0]>=.0125){

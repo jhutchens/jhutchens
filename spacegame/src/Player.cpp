@@ -9,8 +9,10 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
+using namespace std;
 
-Player::Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y):Character(renderer,texture,x,y)
+//Player::Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y):Character(renderer,texture,x,y)
+Player::Player(SDL_Renderer &renderer,int x,int y, int w, int h):Character(renderer,x,y,w,h)
 {
     //constructor
     shield=0;//starting shield level
@@ -27,6 +29,43 @@ Player::Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y):Characte
     //^prolly not a good idea - so that players can still aim & shoot even if out of fuel
 
     hasMap=false;//no map to start
+
+    //
+    
+}
+
+bool Player::setTexture(string loc)
+{
+    printf("initializing surface variable\n");
+    SDL_Surface* surface = NULL;
+    const char * s=loc.c_str();
+    printf("loading image from: %s\n",s);
+    surface = IMG_Load(s);
+    if(!surface) {
+    	printf("Failed to load image to surface! IMG_Load Error: %s\n", IMG_GetError());
+    	// handle error
+	}
+    printf("creating texture from surface\n");
+    this->texture = SDL_CreateTextureFromSurface(this->renderer, surface);
+    if(this->texture == NULL)
+    {
+        printf("Unable to create ship texture! SDL Error: %s\n", SDL_GetError());
+        return false;
+    }
+    printf("freeing surface\n");
+    SDL_FreeSurface(surface);
+}
+
+bool Player::init()
+{
+    
+    
+	
+	//printf("creating sheep\n");
+    
+	
+    
+    //SDL_DestroyTexture( ship );
 }
 
 void Player::increaseSpeed()
