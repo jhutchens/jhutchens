@@ -1,3 +1,9 @@
+/**
+ * @authors: Zach DeCook, Jon Hutchens
+ *
+ *
+ */
+
 #ifdef __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
@@ -15,12 +21,13 @@ class Character
 {
     public:
         /** Default constructor */
-        Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y, int w=30, int h=40);//takes a texture and initial coordinates
+        Character(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y);//takes a texture and initial coordinates
         /** Default destructor */
         virtual ~Character();
 
         SDL_Texture *texture;
         SDL_Renderer *renderer;
+        SDL_Rect rect;
         //SDL_Point center;
 
         void kill();//decrease health to zero
@@ -39,12 +46,10 @@ class Character
 		bool isAlive;//is the character alive or dead?
 		int health;//character's current health
 		float px,py;//more precise x and y
-		SDL_Rect rect;
-		SDL_Rect clip;
-		int frame;
+        int x,y;//x,y position
         double direction;//facing which direction? (angle)
         float speed[2];//current x-speed (speed[0]) and y-speed (speed[1])
-		float omega=0;
+		float omega=0;//angular speed
 
 		void destroy();//destroys the character
         void friction();//resists forward movement and slows down character when not accelerating

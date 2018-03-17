@@ -1,3 +1,9 @@
+/**
+ * @authors: Zach DeCook, Jon Hutchens
+ *
+ *
+ */
+
 #ifdef __APPLE__
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
@@ -22,7 +28,7 @@ class Player : public Character
         /** Default constructor */
 
         //takes a renderer, texture and initial coordinates
-        Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y, int=30, int=40);
+        Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y);
 
 
         /** Default destructor */

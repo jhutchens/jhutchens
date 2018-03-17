@@ -1,10 +1,16 @@
+/**
+ * @authors: Zach DeCook, Jon Hutchens
+ *
+ *
+ */
+
 #include "Player.h"
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
 
-Player::Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y, int w, int h):Character(renderer,texture,x,y,w,h)
+Player::Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y):Character(renderer,texture,x,y)
 {
     //constructor
     shield=0;//starting shield level
