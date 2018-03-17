@@ -1,6 +1,5 @@
 #OBJS specifies which files to compile as part of the project ***********MODIFY THIS TO REFLECT INPUT .CPP NAME
 OBJS = shipgame.cpp src\Character.cpp src\GameApp.cpp src\Object.cpp src\Player.cpp
-
 #OBJS = test.cpp
 #CC specifies which compiler we're using
 CC = g++
