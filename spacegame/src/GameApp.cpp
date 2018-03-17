@@ -85,7 +85,6 @@ GameApp::~GameApp()
 
 bool GameApp::init()
 {
-	printf("game is initializing\n");
 
 	//Initialization flag
 	bool success = true;
@@ -142,33 +141,22 @@ bool GameApp::init()
 
 bool GameApp::createPlayers()
 {
-	printf("creating player 1\n");
-	player1 = new Player(*gRenderer,100,200,43,44);
-	printf("calling setTexture()\n");
-	if(player1->setTexture("res/arrow.png")){
-		printf("successfully set texture\n");
-	}else{
-		printf("failed to set texture\n");
-		return false;
-	}
     //player1 = new Player(*gRenderer,*sheep,100,200,43,44);
-	//printf("creating player 2\n");
     //player2 = new Player(*gRenderer,*sheep,300,100,43,44);
-	//printf("creating missile\n");
 	//missile = new Player(*gRenderer,*rocket,400,400,16,32);
-	printf("done creating\n");
+    player1 = new Player(*gRenderer,*sheep,100,200);
+    player2 = new Player(*gRenderer,*sheep,300,100);
     return true;//@todo return false if failed
 }
 
 void GameApp::close()
 {
-	printf("game must close now\n");
 	delete player1;
+	//delete missile;
  	delete player2;
-	delete missile;
 	//Free loaded images
-	//SDL_DestroyTexture( sheep );
-	//SDL_DestroyTexture( rocket );
+	SDL_DestroyTexture( sheep );
+	SDL_DestroyTexture( rocket );
 
 	//Destroy window
 	SDL_DestroyRenderer( gRenderer );
@@ -192,7 +180,6 @@ void GameApp::start()
 	else
 	{
 	    //printf("Attempting to run game...\n");
-		printf("starting to run game\n");
 		run();
 
 	}//end else code block for main game functions
@@ -214,7 +201,6 @@ void GameApp::displayStocks()
 void GameApp::playGame()
 {
     //While application is running
-	printf("inside playGame()\n");
 		while(!quit)
 		{
 			//SDL_PumpEvents();
@@ -246,20 +232,15 @@ void GameApp::playGame()
 
 			player1->process();
 			player2->process();
-
-			//if(Z_up.held()){missile->increaseSpeed();}
-			missile->process();
 			//Clear screen
 
-			//displayStocks();
+			displayStocks();
 
 			SDL_SetRenderDrawColor(gRenderer, 0x22, 0x22, 0x44, 0xFF);
 			SDL_RenderClear(gRenderer);
 
 			player1->render();
 			player2->render();
-
-			missile->render();
 			//missile->render();
 			//Update screen
 			SDL_RenderPresent(gRenderer);
@@ -269,12 +250,11 @@ void GameApp::playGame()
 
 void GameApp::run()
 {
-	/**loadedSurface = IMG_Load("res/arrow.png");
+	loadedSurface = IMG_Load("res/arrow.png");
 	if(!loadedSurface) {
     	printf("no image...IMG_Load: %s\n", IMG_GetError());
     	// handle error
 	}
-	printf("creating sheep\n");
     sheep = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
 	
     if(sheep == NULL)
@@ -282,28 +262,22 @@ void GameApp::run()
         printf("Unable to create ship texture! SDL Error: %s\n", SDL_GetError());
         quit=true;
     }
-    SDL_FreeSurface(loadedSurface);*/
+    SDL_FreeSurface(loadedSurface);
 	
-	/**
 	loadedSurface = IMG_Load("res/rightm.png");
-	printf("creating missile\n");
 	rocket = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
 	if(rocket == NULL)
 	{
 		printf("Unable to create rocket texture! SDL Error: %s\n", SDL_GetError());
 		quit=true;
 	}
-	SDL_FreeSurface(loadedSurface);*/
+	SDL_FreeSurface(loadedSurface);
 
 	//printf("Calling createPlayers() function...\n");
 
 
-	printf("creating players\n");
-	if(createPlayers()){
-		printf("starting to play game now\n");
-    	playGame();
-	}else{
-		printf("failed to create players!\n");
-	}
-	
+	createPlayers();
+
+	//printf("Calling playGame() function...\n");
+    playGame();
 }

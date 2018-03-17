@@ -20,8 +20,6 @@
 
 #include "Character.h"
 
-using namespace std;
-
 #define NUM_WEAPONS 5//Number of possible weapons to acquire & use (besides lasers)
 
 class Player : public Character
@@ -30,15 +28,11 @@ class Player : public Character
         /** Default constructor */
 
         //takes a renderer, texture and initial coordinates
-        //Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y);
-        Player(SDL_Renderer &renderer,int x,int y, int=30, int=40);
-
+        Player(SDL_Renderer &renderer,SDL_Texture &texture,int x,int y);
 
 
         /** Default destructor */
         virtual ~Player();
-
-        bool init();
 
         //overrides the Character process() to include additional processing
         void process();
@@ -47,8 +41,6 @@ class Player : public Character
         int getFuel();//returns current fuel level
         int getShield();//returns current shield level
         int getEnergy();//returns current energy level
-
-        bool setTexture(string loc);
 
 
 
